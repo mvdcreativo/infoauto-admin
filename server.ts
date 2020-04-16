@@ -9,7 +9,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { existsSync } from 'fs';
 ////SOLUCION LOCALSTORAGE
 import 'localstorage-polyfill'
- global['localStorage'] = localStorage;
+global['localStorage'] = localStorage;
  ///////////////
 
 // The Express app is exported so that it can be used by serverless Functions.
