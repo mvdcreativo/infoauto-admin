@@ -1,0 +1,7 @@
+.mat-card-title span {
+  margin-left: 2rem;
+}
+.mat-card-title span a {
+  background-color: #2d86f7;
+  color: white;
+}

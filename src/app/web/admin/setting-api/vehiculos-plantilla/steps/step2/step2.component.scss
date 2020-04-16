@@ -1,0 +1,61 @@
+.container{
+    box-shadow: none;
+    padding: 1rem;
+    .content{
+        padding: 1rem;
+        .radio-group{
+            font-size: 12px;
+            display: grid;
+            grid-template-columns: repeat(5 , 1fr);
+            padding-bottom: 1rem;
+            
+        
+            .radio-button {
+                margin: 5px;
+                padding: 0.5rem;
+            }
+        
+        }
+        .mat-divider, .mat-divider-horizontal{
+            width: 100%;
+            position: relative;
+            padding-left: 1rem!important;
+        }
+
+    }
+    
+    
+    
+    
+
+    .content-btns{
+        margin-top: 2rem;
+        .nex{
+            margin-left: 1rem
+        }
+    
+    }
+
+}
+
+
+.btn{
+    background-color: #2D86F7;
+    color: white;
+    margin: 1rem;
+}
+form{
+    .mat-form-field {
+        font-size: 14px;
+        width: 30%;
+        margin-left: 1rem;
+    }
+}
+
+.no-shadow{
+    box-shadow: none;
+    color: #424242;
+    background-color: transparent;
+}
+
+

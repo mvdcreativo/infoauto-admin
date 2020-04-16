@@ -1,0 +1,45 @@
+.mat-card {
+  position: relative !important;
+}
+form {
+  width: 100%;
+  height: 90px;
+}
+form .mat-form-field {
+  font-size: 14px;
+  width: 30%;
+  margin-left: 1rem;
+}
+form .image-content {
+  float: left;
+  margin-left: 1rem;
+}
+form .image-content label {
+  height: 84px;
+  width: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 2px;
+}
+form .image-content label .imgPrev {
+  width: 80px;
+  height: 80px;
+  cursor: pointer;
+  object-fit: cover;
+}
+.btn {
+  background-color: #2d86f7;
+  color: white;
+  margin: 1rem;
+}
+.no-shadow {
+  box-shadow: none;
+  color: #424242;
+  background-color: transparent;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}

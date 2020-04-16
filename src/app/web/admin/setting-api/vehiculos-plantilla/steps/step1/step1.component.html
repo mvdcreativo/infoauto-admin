@@ -1,0 +1,101 @@
+
+<mat-card class="container">
+    <mat-card-header>
+        <mat-card-title>Paso 1 - Selección de Vehículo</mat-card-title>
+    </mat-card-header>
+        
+    <div class="container-ventas">
+    <form class="form" [formGroup]="formStep1">
+        <div class="content-form">
+            <div class="searcher">
+                <div class="category">
+                    <mat-form-field>
+                        <mat-label>Tipo Vehículo</mat-label>
+                        <mat-select formControlName="vehicle_category_id" [(value)]="categoryId">
+                            <mat-option *ngFor="let category of categories" [value]='category.id'>
+                                {{ category.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+        
+                <div class="brand">
+                    <mat-form-field class="brand">
+                        <mat-label>Marca</mat-label>
+                        <mat-select formControlName="brand_id" (selectionChange)="changeBrand($event.value)">
+                            <mat-option>Ninguna marca</mat-option>
+                            <mat-option *ngFor="let brand of brands" [value]='brand.id'>{{ brand.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span>
+                        <button class="btn" mat-icon-button aria-label="Agregar Nuevo"
+                        (click)="openDialogBrand()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </span>
+                </div>
+                <div class="model">
+                    <mat-form-field>
+                        <mat-label>Modelo</mat-label>
+                        <mat-select formControlName="vehicle_model_id" (selectionChange)="changeModel($event.value)">
+                            <mat-option>Ningún modelo</mat-option>
+                            <mat-option *ngFor="let model of models" [value]='model.id'>{{ model.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span>
+                        <button class="btn" mat-icon-button aria-label="Agregar Nuevo"
+                        (click)="openDialogModel(brands)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </span>
+                </div>
+                <div class="sub-model">
+                    <mat-form-field>
+                        <mat-label>sub-Modelo</mat-label>
+                        <mat-select formControlName="vehicle_sub_model_id">
+                            <mat-option>Ningún sub-Modelo</mat-option>
+                            <mat-option *ngFor="let subModel of subModels" [value]='subModel.id'>{{ subModel.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <span>
+                        <button class="btn" mat-icon-button aria-label="Agregar Nuevo"
+                        (click)="openDialogSubModel(brands,brandId,modelId)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </span>
+
+                </div>
+                <div class="year">
+                    <mat-form-field>
+                        <mat-label>Año</mat-label>
+                        <mat-select formControlName="year">
+                            <mat-option>Todos</mat-option>
+                            <mat-option *ngFor="let ano of anos" [value]='ano.value'>{{ ano.option}}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+                <div class="condition">
+                    <mat-form-field>
+                        <mat-label>Cilindrada en  cc.</mat-label>
+                        <input matInput formControlName="cilindrada" placeholder="Expresar en cc. Ej. 1800">
+                        <span matSuffix>CC.</span>
+                    </mat-form-field>     
+
+                </div>
+
+                   
+        
+        
+            </div>
+            <div class="content-btns"> 
+                <button  class="btn-second nex" mat-button (click)="submitStep1()" [disabled]="!formStep1.valid" >Continuar</button>
+            </div>
+
+        </div>
+    
+    
+    </form>
+
+</div>
+</mat-card>

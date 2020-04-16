@@ -1,0 +1,31 @@
+<mat-card>
+    <button class="no-shadow" mat-mini-fab aria-label="Cerrar" (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-header>
+        <mat-card-title>Modelo</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form [formGroup]="formAdd">
+            <mat-form-field class="brand" >
+                <input type="text" placeholder="Selecciona la Marca" aria-label="Selecciona la Marca" matInput
+                    formControlName="brand_id" [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        {{option.name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <mat-form-field class="add">
+                <input formControlName="name" matInput placeholder="Nuevo modelo">
+            </mat-form-field>
+            <button *ngIf="!edit" class="btn" (click)="enviar()" [disabled]="!formAdd.valid" mat-button>Agregar</button>
+            <button *ngIf="edit" class="btn" (click)="enviar()" [disabled]="!formAdd.valid" mat-button>Guardar Cambio</button>
+    
+
+        </form>
+    </mat-card-content>
+</mat-card>
+
+
+

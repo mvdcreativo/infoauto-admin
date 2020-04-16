@@ -1,0 +1,76 @@
+<mat-card class="container" *ngIf="plantilla">
+    <mat-card-header>
+        <mat-card-title>Paso 2 - Ficha Técnica</mat-card-title>
+        <mat-card-subtitle>
+            <ng-container *ngIf="mostrar; then muestra; else oculto"></ng-container>
+            <ng-template #muestra>
+                <form [formGroup]="formAdd" >
+                    <mat-form-field class="attribute">
+                        <mat-label>Grupo de características a la que pertenece</mat-label>
+                        <mat-select formControlName="attribute_id">
+                            <mat-option>Ningúna</mat-option>
+                            <mat-option *ngFor="let option of attributesSelect" [value]="option.id">{{ option.name }}</mat-option>
+                        </mat-select>
+                        <mat-hint>Para crear un grupo, dejar este campo en blanco</mat-hint>
+                    </mat-form-field>
+                    <mat-form-field class="add">
+                        <input formControlName="name" matInput placeholder="Nueva Característica">
+                    </mat-form-field>
+                   
+                    <button  *ngIf="!edit" class="btn" (click)="onSubmit()" [disabled]="!formAdd.valid" type="submit" mat-button >Agregar</button>
+                    <!-- <button *ngIf="edit" class="btn" (click)="update(idUpdate)" [disabled]="!formAdd.valid" mat-button>Guardar Cambio</button> -->
+    
+                    <button class="no-shadow" mat-mini-fab aria-label="Agregar Nuevo" (click)="oculta(mostrar = !mostrar)">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </form>
+            </ng-template>
+            <ng-template #oculto>
+                <button class="btn" mat-mini-fab aria-label="Agregar Nuevo"
+                (click)="mostrar = !mostrar">
+                    <mat-icon>add</mat-icon>
+                </button>
+            </ng-template>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <!-- <div class="content">
+        <checkbox-group [options]="attrCheckboxes" [selectedValues]="plantillaAttributes" (toggle)="attCheck($event,0)">
+        </checkbox-group>
+        <mat-divider></mat-divider>
+
+    </div> -->
+    <div class="content" *ngFor="let item of attrCheckboxesChildren; let i=index">
+        <!-- <h5>{{ item.title }}</h5>
+    <checkbox-group [options]="item.attributes" [selectedValues]="plantillaAttributes" (toggle)="attCheck($event, i)">
+    </checkbox-group> -->
+
+
+        <ng-container *ngIf="item.multi_option === '1'; else elseTemplate">
+
+            <label>{{ item.title }}</label>
+            <mat-radio-group class="radio-group" [value]="value(item.attributes, i)">
+                <mat-radio-button class="radio-button" *ngFor="let sItem of item.attributes" [value]="sItem.value"
+                    (change)="attCheck($event.value, i)">
+                    {{sItem.label}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <mat-divider [inset]="true"></mat-divider>
+
+        </ng-container>
+
+        <ng-template #elseTemplate>
+
+            <label>{{ item.title }}</label>
+            <checkbox-group [options]="item.attributes" [selectedValues]="plantillaAttributes"
+                (toggle)="attCheck($event, i)">
+            </checkbox-group>
+            <mat-divider></mat-divider>
+        </ng-template>
+    </div>
+
+    <div class="content-btns">
+        <button mat-button (click)="back()" routerLinkActive="active">Atras</button>
+        <button class="btn-second nex" mat-button (click)="submitStep2()">Finalizar</button>
+    </div>
+
+</mat-card>

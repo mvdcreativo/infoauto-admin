@@ -1,0 +1,18 @@
+<div class="content">
+
+    <mat-card class="content" [perfectScrollbar]="config">
+        <mat-card-header>
+            <mat-card-title  class="header-box-ventas">
+                Plantillas de Vehículo 
+                <span>
+                    <a class="btn" mat-mini-fab aria-label="" [routerLink]="[ '/settings-api/plantilla-vehiculos/step1' ]">
+                        <mat-icon>add</mat-icon>
+                    </a>
+                </span>
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <router-outlet></router-outlet>
+        </mat-card-content>
+    </mat-card>
+</div>

@@ -1,0 +1,153 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+@import './assets/scss/variables.scss';
+
+@import '~perfect-scrollbar/css/perfect-scrollbar.css';
+.mat-footer-row, .mat-header-row, .mat-row {
+    width: 100%!important;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    a{
+        text-decoration: none;
+        cursor: pointer;
+    }
+    box-sizing: border-box;
+    list-style: none;
+    font-family: Nunito, "Helvetica Neue", sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Nunito, "Helvetica Neue", sans-serif; }
+
+
+.mat-dialog-content .mat-horizontal-stepper-header-container { display: none!important; }
+.mat-dialog-container{
+    padding: 0px!important;
+    margin: 0px!important;
+}
+////modifica tema Material
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background{
+    background-color: $primary;
+}
+.mat-ripple-element{
+    color: $primary;
+}
+
+.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+    border-color: $primary;
+}
+.mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+    background-color: $primary;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color:$primary;
+}
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+    color: $primary;
+}
+
+//input
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: $secondary;
+}
+.mat-form-field.mat-focused .mat-form-field-ripple {
+    background-color: $secondary;
+}
+
+
+.mat-card-header-text{
+    width: 100%!important;
+    margin: 0!important;
+}
+
+////////////////////
+
+.center{
+    display: grid;
+    justify-items: center;
+}
+
+
+body{
+    background-color: $background-color;
+
+    
+}
+
+
+button{
+    border: none;
+    background-color: transparent;
+}
+.container{
+    width: 100%;
+
+}
+
+
+
+
+footer-component{
+
+    .footer{
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            grid-template-rows: 1fr;
+            background-color: $primary;
+            color: white;
+            height: 300px;
+            bottom: 0px;
+
+            margin-top: 3rem;
+            div{
+                padding: 3rem;
+                p{
+                    margin-top: 1rem;
+                    font-weight: 300;
+                }
+            }
+    
+    }
+}
+
+
+.toastSuccess{
+    background-color:  #42a847;
+}
+.toastWarn{
+    background-color: #bc5100;
+}
+.toastError{
+    background-color:  #d50000;
+}
+
+.acciones{
+    
+    
+    button{
+        float: left;
+    }
+    .ico-edit{
+        color: #bc5100;
+        float: left;
+    }
+}
+td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type {
+    padding-right: 0!important;
+}
+
+
+//////Gallery
+gallery-core[thumbPosition=bottom] gallery-thumbs .g-slider, gallery-core[thumbPosition=top] gallery-thumbs .g-slider{
+    left: 0%!important;
+    width: 100%;
+    padding-left: 10%;
+    margin-top: 0.5rem;
+}
