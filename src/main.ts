@@ -1,7 +1,3 @@
-////SOLUCION LOCALSTORAGE
-import 'localstorage-polyfill'
- global['localStorage'] = localStorage;
- ///////////////
 import 'hammerjs';
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
