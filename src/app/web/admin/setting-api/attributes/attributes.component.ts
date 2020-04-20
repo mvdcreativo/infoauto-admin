@@ -6,6 +6,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
 import { Attributes } from 'src/app/interfaces/product';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-attributes',
@@ -22,6 +23,10 @@ export class AttributesComponent implements OnInit {
   idUpdate: any;
   attributes: Attributes[];
 
+  color: ThemePalette = 'primary';
+  checked_multi = false;
+  disabled_multi ;
+
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   attributesSelect: Attributes[];
 
@@ -31,7 +36,9 @@ export class AttributesComponent implements OnInit {
     private _settingsService: SettingApiService,
     private fb: FormBuilder,
     private _snackBar: MatSnackBar
-  ) { }
+  ) { 
+
+  }
 
 
   ngOnInit() {
@@ -43,7 +50,9 @@ export class AttributesComponent implements OnInit {
     this.formAdd = this.fb.group({
       attribute_id: [null],
       name: [null, Validators.required],
+      multi_option: [null]
     })
+
   }
   getAttributes(){
     this._settingsService.getAttributes().subscribe(
@@ -63,8 +72,14 @@ export class AttributesComponent implements OnInit {
   }
 
   addAttribute(){
-    const data = this.formAdd.value;
-        
+    let data = this.formAdd.value;
+        console.log(data);
+
+    if(this.checked_multi){
+      data.multi_option = 0
+    }else{
+      data.multi_option = 1
+    }
     this._settingsService.addAttribute(data).subscribe(
       res => {
         console.log(res);
@@ -111,11 +126,17 @@ export class AttributesComponent implements OnInit {
       this.formAdd.reset();
       this.edit = false;
       this.edit = true;
+      if(element.multi_option === 0){
+        this.checked_multi = true;
+      }else{
+        this.checked_multi = false;
+      }
       setTimeout(() => {
       this.formAdd.setValue(
         {
           attribute_id: element.attribute_id,
           name: element.name,
+          multi_option: element.multi_option
         }
       )
 
@@ -135,8 +156,18 @@ export class AttributesComponent implements OnInit {
         
       formData.append('_method', 'PUT')
       formData.append('name', data.name )
-      formData.append('attribute_id', data.attribute_id )
+      if(data.attribute_id) formData.append('attribute_id', data.attribute_id);
 
+      if(this.checked_multi){
+        let v:any = 1
+        formData.append('multi_option', v )
+      }else{
+        let v:any = 0
+        formData.append('multi_option', v )
+
+      }
+
+      
       
       this._settingsService.updateAttributes(id, formData).subscribe(
         res => {
