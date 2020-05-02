@@ -6,7 +6,7 @@
 
                 <mat-form-field class="attribute">
                     <mat-label>Grupo de características a la que pertenece</mat-label>
-                    <mat-select formControlName="attribute_id" [(ngModel)]="disabled_multi">
+                    <mat-select formControlName="attribute_id" >
                         <mat-option>Ningúna</mat-option>
                         <mat-option *ngFor="let option of attributesSelect" [value]="option.id">{{ option.name }}
                         </mat-option>
@@ -14,7 +14,7 @@
                     <mat-hint>Para crear un grupo, dejar este campo en blanco</mat-hint>
                 </mat-form-field>
 
-                <mat-slide-toggle class="slide-togle" [color]="color" [checked]="checked_multi" [disabled]="disabled_multi">
+                <mat-slide-toggle class="slide-togle" [color]="color" (toggleChange)="checked_multi = !checked_multi"  [checked]="checked_multi" [disabled]="disabled_multi">
                     Multi opción
                 </mat-slide-toggle>
                 
@@ -24,6 +24,7 @@
 
                 <button *ngIf="!edit" class="btn" (click)="onSubmit()" [disabled]="!formAdd.valid" type="submit"
                     mat-button>Agregar</button>
+
                 <button *ngIf="edit" class="btn" (click)="update(idUpdate)" [disabled]="!formAdd.valid"
                     mat-button>Guardar Cambio</button>
 

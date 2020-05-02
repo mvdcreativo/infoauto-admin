@@ -6,6 +6,7 @@ import { SettingApiService } from 'src/app/web/admin/setting-api/services/settin
 import { CheckboxItem } from 'src/app/shared/checkbox-group/CheckboxItem';
 import { VehiculosPlantillaService } from '../../services/vehiculos-plantilla.service';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { ThemePalette } from '@angular/material/core';
 
 @Component({
   selector: 'app-step2',
@@ -28,7 +29,9 @@ export class Step2Component implements OnInit {
   edit: boolean;
   idUpdate: any;
   attributesSelect: Attributes[];
-
+  color: ThemePalette = 'primary';
+  checked_multi = false;
+  disabled_multi ;
   //////
 
 
@@ -177,7 +180,7 @@ export class Step2Component implements OnInit {
       res => {
         console.log(res);
         
-        if(res && res.attributes.length != 0){
+        if(res && res.attributes && res.attributes.length != 0){
         this.plantillaAttributes = res.attributes.map(v=> v.id)
     //   console.log(this.plantillaAttributes);
         }else{
@@ -208,6 +211,7 @@ export class Step2Component implements OnInit {
     this.formAdd = this.fb.group({
       attribute_id: [null],
       name: [null, Validators.required],
+      multi_option: [null]
     })
   }
 
@@ -221,7 +225,14 @@ export class Step2Component implements OnInit {
   }
 
   addAttribute(){
-    const data = this.formAdd.value;
+    let data = this.formAdd.value;
+    console.log(data);
+
+    if(this.checked_multi){
+      data.multi_option = 0
+    }else{
+      data.multi_option = 1
+    }
         
     this._settingApiServises.addAttribute(data).subscribe(
       res => {

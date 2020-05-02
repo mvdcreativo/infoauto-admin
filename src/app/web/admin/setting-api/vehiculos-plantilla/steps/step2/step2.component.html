@@ -13,6 +13,9 @@
                         </mat-select>
                         <mat-hint>Para crear un grupo, dejar este campo en blanco</mat-hint>
                     </mat-form-field>
+                    <mat-slide-toggle class="slide-togle" [color]="color" (toggleChange)="checked_multi = !checked_multi"  [checked]="checked_multi" [disabled]="disabled_multi">
+                        Multi opción
+                    </mat-slide-toggle>
                     <mat-form-field class="add">
                         <input formControlName="name" matInput placeholder="Nueva Característica">
                     </mat-form-field>

@@ -126,7 +126,7 @@ export class AttributesComponent implements OnInit {
       this.formAdd.reset();
       this.edit = false;
       this.edit = true;
-      if(element.multi_option === 0){
+      if(element.multi_option === "0" || element.multi_option === 0){
         this.checked_multi = true;
       }else{
         this.checked_multi = false;
@@ -134,7 +134,7 @@ export class AttributesComponent implements OnInit {
       setTimeout(() => {
       this.formAdd.setValue(
         {
-          attribute_id: element.attribute_id,
+          attribute_id: parseInt(element.attribute_id),
           name: element.name,
           multi_option: element.multi_option
         }
@@ -152,28 +152,23 @@ export class AttributesComponent implements OnInit {
      
     update(id:number) {
       const data = this.formAdd.value;
-      const formData = new FormData();
-        
-      formData.append('_method', 'PUT')
-      formData.append('name', data.name )
-      if(data.attribute_id) formData.append('attribute_id', data.attribute_id);
+      
+      console.log(data);
 
       if(this.checked_multi){
-        let v:any = 1
-        formData.append('multi_option', v )
+        data.multi_option = 0
       }else{
-        let v:any = 0
-        formData.append('multi_option', v )
-
+        data.multi_option = 1
       }
 
+   
       
-      
-      this._settingsService.updateAttributes(id, formData).subscribe(
+      this._settingsService.updateAttributes(id, data).subscribe(
         res => {
           console.log(res);
           this._settingsService.openSnackBar('success', `Atributo ${res.name} Actualizado con éxito!!`)
           this.getAttributes()
+          this.edit= false;
           this.formAdd.reset();
           this.mostrar = false;
           this.idUpdate = null;

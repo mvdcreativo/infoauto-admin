@@ -144,7 +144,7 @@ deleteAttribute(id) {
 }
 
 updateAttributes(id, data){
-  return this._http.post<Attributes>(`${environment.API}attributes/${id}`, data).pipe(
+  return this._http.put<Attributes>(`${environment.API}attributes/${id}`, data).pipe(
     take(1)
   )
 }
